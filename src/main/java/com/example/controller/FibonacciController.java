@@ -1,5 +1,5 @@
 /**
- * 
+ * Copyright comments
  */
 package com.example.controller;
 
@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bean.RestResponse;
+import com.example.rest.RestResponse;
 import com.example.service.impl.FibonacciServiceImpl;
+
 
 import javax.ws.rs.core.MediaType;
 /**
@@ -28,6 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Produces({ MediaType.APPLICATION_JSON })
 public class FibonacciController {
 
+/**
+ * fibonacciService
+ */
 @Autowired
 FibonacciServiceImpl fibonacciService;
 
@@ -45,22 +49,17 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
 @ResponseBody
-public RestResponse getFibonacciSequence(  @QueryParam("n")
+public RestResponse retrieveFibonacciSequence(  @QueryParam("n")
 final long n, HttpServletResponse  response) {
 	
 	log.info("[FibonacciController Called. Invoke getFibonacciSequence]");
 	
 	response.addHeader("pragma", "no-cache");
-//	response.addHeader("content-encoding", "gzip");
-//	response.addHeader("vary", "Accept-Encoding");
-//	response.addHeader("cache-control", "no-cache");
-//	response.addHeader("content-length", "122");
 	response.addHeader("expires", "-1");
 	
-	RestResponse restResponse = new RestResponse();
-	restResponse.setResponseCode(response.getStatus());
-	restResponse.setNumber(fibonacciService.getFibonacciSeries(n));
-	return restResponse;
+	return RestResponse.build(() -> {
+		return fibonacciService.retrieveFibonacciSequence(n);
+	});
 	
 }
 }

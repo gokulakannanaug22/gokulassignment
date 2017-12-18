@@ -14,61 +14,21 @@ public class RestRequest {
 	/**
 	 * 
 	 */
-	@JsonProperty("Array1")
-	List<Integer> array1;
+	@JsonProperty("Array")
+	List<List<Integer>> array;
 	
-	/**
-	 * 
-	 */
-	@JsonProperty("Array2")
-	List<Integer> array2;
-	
-	/**
-	 * 
-	 */
-	@JsonProperty("Array3")
-	List<Integer> array3;
-
 	/**
 	 * @return
 	 */
-	public List<Integer> getArray1() {
-		return array1;
+	public List<List<Integer>> getArray() {
+		return array;
 	}
 
 	/**
 	 * @param array1
 	 */
-	public void setArray1(List<Integer> array1) {
-		this.array1 = array1;
+	public void setArray(List<List<Integer>> array) {
+		this.array = array;
 	}
 
-	/**
-	 * @return
-	 */
-	public List<Integer> getArray2() {
-		return array2;
-	}
-
-	/**
-	 * @param array2
-	 */
-	public void setArray2(List<Integer> array2) {
-		this.array2 = array2;
-	}
-
-	/**
-	 * @return
-	 */
-	public List<Integer> getArray3() {
-		return array3;
-	}
-
-	/**
-	 * @param array3
-	 */
-	public void setArray3(List<Integer> array3) {
-		this.array3 = array3;
-	}
-	
 }

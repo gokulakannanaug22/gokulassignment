@@ -11,6 +11,6 @@ public interface ReverseWordsService {
 		 * @param sentence
 		 * @return
 		 */
-		String getReverseWords(String sentence);
+		String retrieveReverseWords(String sentence);
 
 }

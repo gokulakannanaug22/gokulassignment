@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.example.error.ApplicationError;
+import com.example.error.InputError;
 import com.example.model.RestRequest;
 
-/**
- * @author gokulakannanv
- *
- */
 @RunWith(MockitoJUnitRunner.class)
 public class MakeOneArrayServiceImplTest {
 
 	/**
-	 * 
+	 * MakeOneArrayServiceImpl
 	 */
 	public MakeOneArrayServiceImpl makeOneArrayService;
+	/**
+	 * restRequest
+	 */
+	public RestRequest restRequest;
 	
 	/**
 	 * setUp
@@ -30,72 +32,92 @@ public class MakeOneArrayServiceImplTest {
 	@Before
 	public void setUp(){
 		makeOneArrayService = new MakeOneArrayServiceImpl();
+		restRequest = new RestRequest();
+		List<List<Integer>> array = new ArrayList<>();
+		List<Integer> innerArray = new ArrayList<>();
+		innerArray.add(1);
+		innerArray.add(2);
+		innerArray.add(3);
+		innerArray.add(4);		
+		array.add(innerArray);
+		
+		innerArray = new ArrayList<>();
+		innerArray.add(3);
+		innerArray.add(4);
+		innerArray.add(5);
+		innerArray.add(6);		
+		array.add(innerArray);
+		
+		innerArray = new ArrayList<>();
+		innerArray.add(6);
+		innerArray.add(1);
+		innerArray.add(3);
+		innerArray.add(11);		
+		array.add(innerArray);
+		
+		restRequest.setArray(array);
 	}
 	
 	/**
-	 * testmakeOneArray
+	 * testRetrieveOneArray
 	 * @throws Exception
 	 */
 	@Test
-	public void testmakeOneArray() throws Exception{
-		RestRequest restRequest = new RestRequest();
-		List<Integer> list1 = new ArrayList<>();
-		list1.add(1);
-		list1.add(2);
-		list1.add(3);
-		list1.add(4);
-		restRequest.setArray1(list1);
-		
-		List<Integer> list2 = new ArrayList<>();
-		list2.add(3);
-		list2.add(4);
-		list2.add(5);
-		list2.add(6);
-		restRequest.setArray2(list2);
-		
-		List<Integer> list3 = new ArrayList<>();
-		list3.add(6);
-		list3.add(1);
-		list3.add(3);
-		list3.add(11);
-		restRequest.setArray3(list3);
-		
-		makeOneArrayService.makeOneArray(restRequest);
-		
-		assertNotNull(makeOneArrayService.makeOneArray(restRequest));
+	public void testRetrieveOneArray() throws Exception{
+		makeOneArrayService.retrieveOneArray(restRequest);
+		assertNotNull(restRequest);
+		assertEquals("Array size", 3, restRequest.getArray().size());
+		List<Integer> newList = new ArrayList<>();
+		newList.add(1);
+		newList.add(2);
+		newList.add(3);
+		newList.add(4);
+		newList.add(5);
+		newList.add(6);
+		newList.add(11);
+		assertEquals("Return Result", newList, makeOneArrayService.retrieveOneArray(restRequest));
 	}
 	
 	/**
-	 * testmakeOneArray
+	 * testRetrieveOneArrayNullRequest
+	 * @throws Exception
+	 */
+	@Test(expected=InputError.class)
+	public void testRetrieveOneArrayNullRequest() throws Exception{
+		restRequest = null;
+		makeOneArrayService.retrieveOneArray(restRequest);
+	}
+	
+	/**
+	 * testRetrieveOneArray
 	 * @throws Exception
 	 */
 	@Test
-	public void testmakeOneArray1() throws Exception{
-		RestRequest restRequest = new RestRequest();
-		List<Integer> list1 = new ArrayList<>();
-		list1.add(1);
-		list1.add(3);
-		list1.add(3);
-		list1.add(5);
-		restRequest.setArray1(list1);
+	public void testRetrieveOneArrayReplicate() throws Exception{
+		List<List<Integer>> array = new ArrayList<>();
+		List<Integer> innerArray = new ArrayList<>();
+		innerArray.add(1);
+		innerArray.add(2);
+		innerArray.add(1);
+		innerArray.add(1);		
+		array.add(innerArray);
 		
-		List<Integer> list2 = new ArrayList<>();
-		list2.add(3);
-		list2.add(4);
-		list2.add(5);
-		list2.add(6);
-		restRequest.setArray2(list2);
+		innerArray = new ArrayList<>();
+		innerArray.add(3);
+		innerArray.add(3);
+		innerArray.add(3);
+		innerArray.add(3);		
+		array.add(innerArray);
+		restRequest = new RestRequest();
+		restRequest.setArray(array);
 		
-		List<Integer> list3 = new ArrayList<>();
-		list3.add(6);
-		list3.add(1);
-		list3.add(3);
-		list3.add(11);
-		restRequest.setArray3(list3);
-		
-		makeOneArrayService.makeOneArray(restRequest);
-		
-		assertNotNull(makeOneArrayService.makeOneArray(restRequest));
+		makeOneArrayService.retrieveOneArray(restRequest);
+		assertNotNull(restRequest);
+		assertEquals("Array size", 2, restRequest.getArray().size());
+		List<Integer> newList = new ArrayList<>();
+		newList.add(1);
+		newList.add(2);
+		newList.add(3);
+		assertEquals("Return Result", newList, makeOneArrayService.retrieveOneArray(restRequest));
 	}
 }
-

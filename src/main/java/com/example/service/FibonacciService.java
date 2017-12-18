@@ -10,6 +10,6 @@ public interface FibonacciService {
 	 * @param n
 	 * @return
 	 */
-	long getFibonacciSeries(long n);
+	long retrieveFibonacciSequence(long n);
 
 }

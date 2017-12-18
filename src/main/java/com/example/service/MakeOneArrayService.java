@@ -14,6 +14,6 @@ public interface MakeOneArrayService {
 	 * @param n
 	 * @return
 	 */
-	List<Integer> makeOneArray(RestRequest restRequest);
+	List<Integer> retrieveOneArray(RestRequest restRequest);
 	
 }

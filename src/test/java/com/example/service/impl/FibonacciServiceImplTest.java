@@ -5,28 +5,42 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
+import static org.mockito.Mockito.when;
+import com.example.error.ApplicationError;
+import com.example.validator.InputValidator;
 /**
- * The Class FibonacciService.
+ * @author gokulakannanv
  *
- * @author vp020k
  */
 @RunWith(MockitoJUnitRunner.class)
 public class FibonacciServiceImplTest {
 
 	/**
-	 * 
+	 * fibonacciService
 	 */
+	@InjectMocks
 	public FibonacciServiceImpl fibonacciService;
 	
+	/**
+	 * mInputValidator
+	 */
+	@Mock
+	public InputValidator mInputValidator;
+	
+	/**
+	 * inputValidator
+	 */
+	@InjectMocks
+	public InputValidator inputValidator;
 	
 	/**
 	 * setUp
 	 */
 	@Before
 	public void setUp(){
-		fibonacciService = new FibonacciServiceImpl();
 	}
 	
 	/**
@@ -35,10 +49,12 @@ public class FibonacciServiceImplTest {
 	 */
 	@Test
 	public void testGroupFibonacciList() throws Exception{
-		long n = 10;
-		fibonacciService.getFibonacciSeries(n);
-		assertEquals(55, fibonacciService.getFibonacciSeries(n));
-		assertNotNull(fibonacciService.getFibonacciSeries(n));
+		long number = 10;
+		when(mInputValidator.validate(new Long(10))).thenReturn(true);		
+		fibonacciService.retrieveFibonacciSequence(number);
+		assertEquals("Compare Result", 55, fibonacciService.retrieveFibonacciSequence(number));
+		assertEquals("Input", 10, number);
+		assertNotNull(fibonacciService.retrieveFibonacciSequence(number));
 	}
 	
 	/**
@@ -47,19 +63,22 @@ public class FibonacciServiceImplTest {
 	 */
 	@Test
 	public void testGroupFibonacciListInput() throws Exception{
-		long n = 0;
-		fibonacciService.getFibonacciSeries(n);
-		assertEquals(0, fibonacciService.getFibonacciSeries(n));
-		assertNotNull(fibonacciService.getFibonacciSeries(n));
+		long number = 0;
+		fibonacciService.retrieveFibonacciSequence(number);
+		assertEquals(0, fibonacciService.retrieveFibonacciSequence(number));
+		assertEquals("Input", 0, number);
+		assertNotNull(fibonacciService.retrieveFibonacciSequence(number));
 	}
 	
 	/**
 	 * testretrieveItemPromotions
 	 * @throws Exception
 	 */
-	@Test(expected=NullPointerException.class)
+	@Test (expected=ApplicationError.class)
 	public void testGroupFibonacciListNull() throws Exception{
-		long n=(Long) null;
-		fibonacciService.getFibonacciSeries(n);
+		long number= -10;
+		when(inputValidator.validate(new Long(-10))).thenReturn(true);
+		assertEquals("Input", -10, number);
+		fibonacciService.retrieveFibonacciSequence(number);
 	}
 }

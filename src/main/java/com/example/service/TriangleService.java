@@ -6,5 +6,5 @@ public interface TriangleService {
 	 * @param sentence
 	 * @return
 	 */
-	String getTriangleType(int a, int b, int c);
+	String retrieveTriangleType(int a, int b, int c);
 }

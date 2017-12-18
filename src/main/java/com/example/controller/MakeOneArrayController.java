@@ -1,3 +1,6 @@
+/**
+ * Copyright comments
+ */
 package com.example.controller;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,18 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bean.MakeOneArrayRestResponse;
 import com.example.model.RestRequest;
+import com.example.rest.RestResponse;
 import com.example.service.impl.MakeOneArrayServiceImpl;
 
 /**
- * This is the Controller for Fibonacci Sequence
+ * This is the Controller for Make One Array Sequence by eliminating duplicates
+ * @author gokulakannanv
+ *
  */
 @RestController
 @RequestMapping("/api")
 @Produces({ MediaType.APPLICATION_JSON })
 public class MakeOneArrayController {
 
+/**
+ * makeOneArrayService
+ */
 @Autowired
 MakeOneArrayServiceImpl makeOneArrayService;
 
@@ -34,7 +42,7 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 /**
  * Retrieve Array.
- *
+ * This method retrieves the array into one single array by eliminating duplicates and sort
  * @param restRequest
  * @return the rest response
  */
@@ -43,21 +51,17 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
 @ResponseBody
-public MakeOneArrayRestResponse makeOneArray(@RequestBody RestRequest restRequest, HttpServletResponse  response) {
+public RestResponse retrieveOneArray(@RequestBody RestRequest restRequest, HttpServletResponse  response) {
 	
 	log.info("[MakeOneArrayController Called. Invoke getFibonacciSequence]");
 	
 	response.addHeader("pragma", "no-cache");
-//	response.addHeader("content-encoding", "gzip");
-//	response.addHeader("vary", "Accept-Encoding");
-//	response.addHeader("cache-control", "no-cache");
-//	response.addHeader("content-length", "122");
 	response.addHeader("expires", "-1");
 	
-	MakeOneArrayRestResponse restResponse = new MakeOneArrayRestResponse();
-	restResponse.setResponseCode(response.getStatus());
-	restResponse.setList(makeOneArrayService.makeOneArray(restRequest));
-	return restResponse;
+	return RestResponse.build(() -> {
+		return makeOneArrayService.retrieveOneArray(restRequest);
+	});
+	
 	
 }
 

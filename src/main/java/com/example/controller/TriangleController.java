@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bean.TriangleRestResponse;
+import com.example.rest.RestResponse;
 import com.example.service.impl.TriangleServiceImpl;
 /**
  * This is the Controller for TriangleType
@@ -34,7 +34,7 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 /**
  * Reverse the Words
  *
- * @param n
+ * @param a, b, c
  * @return the rest response
  */
 @GET
@@ -42,7 +42,7 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
 @ResponseBody
-public TriangleRestResponse getReverseWords(  @QueryParam("a")
+public RestResponse retrieveTriangleType(  @QueryParam("a")
 final int a, @QueryParam("b")
 final int b, @QueryParam("c")
 final int c, HttpServletResponse  response) {
@@ -50,16 +50,11 @@ final int c, HttpServletResponse  response) {
 	log.info("[ReverseWordsController Called. Invoke getReverseWords]");
 	
 	response.addHeader("pragma", "no-cache");
-	/*response.addHeader("content-encoding", "gzip");
-	response.addHeader("vary", "Accept-Encoding");
-	response.addHeader("cache-control", "no-cache");
-	response.addHeader("content-length", "131");*/
 	response.addHeader("expires", "-1");
 	
-	TriangleRestResponse restResponse = new TriangleRestResponse();
-	restResponse.setResponseCode(response.getStatus());
-	restResponse.setMessage(triangleService.getTriangleType(a, b, c));
-	return restResponse;
+	return RestResponse.build(() -> {
+		return triangleService.retrieveTriangleType(a, b, c);
+	});
 	
 }
 
