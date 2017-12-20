@@ -89,7 +89,7 @@ public class MakeOneArrayServiceImplTest {
 	}
 	
 	/**
-	 * testRetrieveOneArray
+	 * testRetrieveOneArrayReplicate
 	 * @throws Exception
 	 */
 	@Test

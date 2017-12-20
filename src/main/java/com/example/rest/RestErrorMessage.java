@@ -14,7 +14,7 @@ public final class RestErrorMessage extends AbstractErrorMessage {
 	/**
 	 * Instantiates a new error message.
 	 */
-	private RestErrorMessage() {
+	public RestErrorMessage() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public final class RestErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public RestErrorMessage code(final String code) {
+	public RestErrorMessage errorCode(final String code) {
 		this.code = code;
 		return this;
 	}
@@ -49,7 +49,7 @@ public final class RestErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public RestErrorMessage userMessage(final String userMessage) {
+	public RestErrorMessage displayUserMessage(final String userMessage) {
 		this.userMessage = userMessage;
 		return this;
 	}
@@ -63,7 +63,7 @@ public final class RestErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public RestErrorMessage developerMessage(final String developerMessage) {
+	public RestErrorMessage displayDeveloperMessage(final String developerMessage) {
 		this.developerMessage = developerMessage;
 		return this;
 	}

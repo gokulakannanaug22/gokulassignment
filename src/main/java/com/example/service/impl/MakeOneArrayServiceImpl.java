@@ -38,7 +38,7 @@ public class MakeOneArrayServiceImpl implements MakeOneArrayService{
 
 		if(!Optional.ofNullable(restRequest).isPresent()) {
 			throw new InputError(ExceptionErrorMessage.newObject()
-					.developerMessage("Input Validation Failed because of incorrect array input"));
+					.displayDeveloperMessage("Input Validation Failed because of incorrect array input"));
 		}
 		List<Integer> combinedList = new ArrayList<>();
 		for(List<Integer> newList : restRequest.getArray()) {

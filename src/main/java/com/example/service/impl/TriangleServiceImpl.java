@@ -61,10 +61,6 @@ public class TriangleServiceImpl implements TriangleService{
 		else if ((sideA==sideB && sideB!=sideC ) || (sideA!=sideB && sideC==sideA) || (sideC==sideB && sideC!=sideA)) {
 			triangleType = "Isosceles";
 		}
-		// not a triangle
-		else if(sideA >= (sideB+sideC) || sideC >= (sideB+sideA) || sideB >= (sideA+sideC) ) {
-			triangleType = "Not a triangle";
-		}
 		// if none of the sides are equal
 		else if(sideA!=sideB && sideB!=sideC && sideC!=sideA) {
 			triangleType = "Scalene";

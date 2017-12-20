@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.util.reflection.Whitebox;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.example.validator.InputValidator;
 
@@ -40,11 +39,11 @@ public class TriangleServiceImplTest {
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testretrieveTriangleTypeEquivalateral
 	 * @throws Exception
 	 */
 	@Test
-	public void testgetTriangleTypeEquivalateral() throws Exception{
+	public void testretrieveTriangleTypeEquivalateral() throws Exception{
 		int sideA=1;
 		int sideB=1;
 		int sideC=1;
@@ -55,11 +54,11 @@ public class TriangleServiceImplTest {
 	}
 	
 	/**
-	 * testgetTriangleIsocelesError
+	 * testretrieveTriangleTypeIsocelesError
 	 * @throws Exception
 	 */
 	@Test(expected=java.lang.AssertionError.class)
-	public void testgetTriangleIsocelesError() throws Exception{
+	public void testretrieveTriangleTypeIsocelesError() throws Exception{
 		int sideA=1;
 		int sideB=2;
 		int sideC=1;
@@ -69,11 +68,11 @@ public class TriangleServiceImplTest {
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testretrieveTriangleTypeIsoceles
 	 * @throws Exception
 	 */
 	@Test
-	public void testgetTriangleIsoceles() throws Exception{
+	public void testretrieveTriangleTypeIsoceles() throws Exception{
 		int sideA=1;
 		int sideB=2;
 		int sideC=1;
@@ -84,37 +83,22 @@ public class TriangleServiceImplTest {
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testretrieveTriangleTypeScalene
 	 * @throws Exception
 	 */
 	@Test
-	public void testgetTriangleIsocelesScalene() throws Exception{
-		int sideA=1;
-		int sideB=2;
-		int sideC=3;
-		when(mInputValidator.validate(sideA, sideB, sideC)).thenReturn(true);	
-		triangleService.retrieveTriangleType(sideA, sideB, sideC);
-		assertNotNull(triangleService.retrieveTriangleType(sideA, sideB, sideC));
-		assertEquals("Triangle Type", "Not a triangle", triangleService.retrieveTriangleType(sideA, sideB, sideC));
-	}
-	
-	/**
-	 * testgetReverseWords
-	 * @throws Exception
-	 */
-	@Test
-	public void testgetTriangleIsocelesNotTriangle() throws Exception{
+	public void testretrieveTriangleTypeScalene() throws Exception{
 		int sideA=6;
 		int sideB=2;
 		int sideC=3;
 		when(mInputValidator.validate(sideA, sideB, sideC)).thenReturn(true);	
 		triangleService.retrieveTriangleType(sideA, sideB, sideC);
 		assertNotNull(triangleService.retrieveTriangleType(sideA, sideB, sideC));
-		assertEquals("Triangle Type", "Not a triangle", triangleService.retrieveTriangleType(sideA, sideB, sideC));
+		assertEquals("Triangle Type", "Scalene", triangleService.retrieveTriangleType(sideA, sideB, sideC));
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testtriangleTypeEquivalateral
 	 * @throws Exception
 	 */
 	@Test
@@ -129,22 +113,22 @@ public class TriangleServiceImplTest {
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testtriangleTypeScalene
 	 * @throws Exception
 	 */
 	@Test
-	public void testtriangleTypeNotTriangle() throws Exception{
+	public void testtriangleTypeScalene() throws Exception{
 		int sideA=1;
 		int sideB=2;
 		int sideC=3;
 		triangleService.triangleType(sideA, sideB, sideC);
-		assertEquals("Triangle Type", "Not a triangle", triangleService.triangleType(sideA, sideB, sideC));
+		assertEquals("Triangle Type", "Scalene", triangleService.triangleType(sideA, sideB, sideC));
 		assertNotNull(triangleService.triangleType(sideA, sideB, sideC));
-		assertEquals("Triangle Type", "Not a triangle", triangleService.triangleType(sideA, sideB, sideC));
+		assertEquals("Triangle Type", "Scalene", triangleService.triangleType(sideA, sideB, sideC));
 	}
 	
 	/**
-	 * testgetReverseWords
+	 * testtriangleTypeIsosceles
 	 * @throws Exception
 	 */
 	@Test

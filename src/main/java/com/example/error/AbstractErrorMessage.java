@@ -28,7 +28,7 @@ public abstract class AbstractErrorMessage {
 	 *            the code
 	 * @return the error message
 	 */
-	public AbstractErrorMessage code(final String code) {
+	public AbstractErrorMessage errorCode(final String code) {
 		this.code = code;
 		return this;
 	}
@@ -40,7 +40,7 @@ public abstract class AbstractErrorMessage {
 	 *            the user message
 	 * @return the error message
 	 */
-	public AbstractErrorMessage userMessage(final String userMessage) {
+	public AbstractErrorMessage displayUserMessage(final String userMessage) {
 		this.userMessage = userMessage;
 		return this;
 	}
@@ -53,7 +53,7 @@ public abstract class AbstractErrorMessage {
 	 *            the developer message
 	 * @return the error message
 	 */
-	public AbstractErrorMessage developerMessage(final String developerMessage) {
+	public AbstractErrorMessage displayDeveloperMessage(final String developerMessage) {
 		this.developerMessage = developerMessage;
 		return this;
 	}

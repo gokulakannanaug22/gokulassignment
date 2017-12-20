@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,14 +9,15 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.mockito.Mockito.when;
+
 import com.example.error.ApplicationError;
 import com.example.validator.InputValidator;
+
 /**
  * @author gokulakannanv
  *
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class) 
 public class FibonacciServiceImplTest {
 
 	/**
@@ -44,7 +46,7 @@ public class FibonacciServiceImplTest {
 	}
 	
 	/**
-	 * testretrieveItemPromotions
+	 * testGroupFibonacciList
 	 * @throws Exception
 	 */
 	@Test
@@ -58,7 +60,7 @@ public class FibonacciServiceImplTest {
 	}
 	
 	/**
-	 * testretrieveItemPromotions
+	 * testGroupFibonacciListInput
 	 * @throws Exception
 	 */
 	@Test
@@ -71,7 +73,7 @@ public class FibonacciServiceImplTest {
 	}
 	
 	/**
-	 * testretrieveItemPromotions
+	 * testGroupFibonacciListNull
 	 * @throws Exception
 	 */
 	@Test (expected=ApplicationError.class)

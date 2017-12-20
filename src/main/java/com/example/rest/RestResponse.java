@@ -33,7 +33,7 @@ public class RestResponse {
 		try {
 			final Object res = service.execute();
 			if (res == null) {
-				response.status(400).errorMessage(RestErrorMessage.newObject().developerMessage("No data found."));
+				response.status(400).errorMessage(RestErrorMessage.newObject().displayDeveloperMessage("No data found."));
 			} else {
 				response.status(200).response(res);
 			}
@@ -84,9 +84,9 @@ public class RestResponse {
 
 		for(final ExceptionErrorMessage errorMessage: errors) {
 			error.add(RestErrorMessage.newObject()
-					.code(errorMessage.getCode())
-					.userMessage(errorMessage.getUserMessage())
-					.developerMessage(errorMessage.getDeveloperMessage())
+					.errorCode(errorMessage.getCode())
+					.displayUserMessage(errorMessage.getUserMessage())
+					.displayDeveloperMessage(errorMessage.getDeveloperMessage())
 					);
 		}
 		return this;

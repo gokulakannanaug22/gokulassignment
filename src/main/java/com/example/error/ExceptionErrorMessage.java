@@ -20,7 +20,7 @@ public final class ExceptionErrorMessage extends AbstractErrorMessage {
 	/**
 	 * Instantiates a new error message.
 	 */
-	private ExceptionErrorMessage() {
+	public ExceptionErrorMessage() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public final class ExceptionErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public ExceptionErrorMessage code(final String code) {
+	public ExceptionErrorMessage errorCode(final String code) {
 		this.code = code;
 		return this;
 	}
@@ -55,7 +55,7 @@ public final class ExceptionErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public ExceptionErrorMessage userMessage(final String userMessage) {
+	public ExceptionErrorMessage displayUserMessage(final String userMessage) {
 		this.userMessage = userMessage;
 		return this;
 	}
@@ -69,7 +69,7 @@ public final class ExceptionErrorMessage extends AbstractErrorMessage {
 	 * @return the error message
 	 */
 	@Override
-	public ExceptionErrorMessage developerMessage(final String developerMessage) {
+	public ExceptionErrorMessage displayDeveloperMessage(final String developerMessage) {
 		this.developerMessage = developerMessage;
 		return this;
 	}

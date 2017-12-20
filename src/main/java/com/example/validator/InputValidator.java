@@ -35,14 +35,14 @@ public class InputValidator {
 		if(Optional.ofNullable(number).isPresent() && number>=0) {
 			if( String.valueOf(number).length()>2) {
 				throw new InputError(ExceptionErrorMessage.newObject()
-						.developerMessage("Input Validation Failed because of max input"));
+						.displayDeveloperMessage("Input Validation Failed because of max input"));
 			}
 			log.info("Input Successfully Validated");		
 			return true;
 		}
 		else {
 			throw new ApplicationError(ExceptionErrorMessage.newObject()
-					.developerMessage("Input Validation Failed because of incorrect input"));
+					.displayDeveloperMessage("Input Validation Failed because of incorrect input"));
 		}
 	}
 
@@ -53,13 +53,27 @@ public class InputValidator {
 	 * @return boolean
 	 */
 	public boolean validate(int sideA, int sideB, int sideC) {
-		if(Optional.ofNullable(sideA).isPresent() && Optional.ofNullable(sideA).isPresent() && Optional.ofNullable(sideA).isPresent()) {
+		if(Optional.ofNullable(sideA).isPresent() && Optional.ofNullable(sideB).isPresent() && Optional.ofNullable(sideC).isPresent() ) {
+			checkNonNegative(sideA, sideB, sideC);
 			log.info("Input Successfully Validated");		
 			return true;
 		}
 		else {
 			throw new InputError(ExceptionErrorMessage.newObject()
-					.developerMessage("Input Validation Failed because of incorrect input"));
+					.displayDeveloperMessage("Input Validation Failed because of incorrect input"));
+		}
+	}
+
+	/**
+	 * checkNonNegative
+	 * @param sideA
+	 * @param sideB
+	 * @param sideC
+	 */
+	private void checkNonNegative(int sideA, int sideB, int sideC) {
+		if(sideA<0 || sideB<0 || sideC<0) {
+			throw new InputError(ExceptionErrorMessage.newObject()
+					.displayDeveloperMessage("Input Validation Failed because of negative input"));
 		}
 	}
 }

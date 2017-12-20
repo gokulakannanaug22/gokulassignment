@@ -14,7 +14,7 @@ public abstract class AbstractError extends Error {
 	private static final long serialVersionUID = 3705265262302703688L;
 	
 	/** Error messages. */	
-	private final ExceptionErrorMessage[] errorMessages;
+	private final transient ExceptionErrorMessage[] errorMessages;
 	
 	/**
 	 * Instantiates a new abstract error.

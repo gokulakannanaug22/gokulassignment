@@ -3,6 +3,7 @@
  */
 package com.example.service.impl;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
@@ -58,6 +59,7 @@ public class FibonacciServiceImpl implements FibonacciService{
 				.limit(number)
 				.reduce((firstValue, nextValue) -> nextValue)
 				.get()[0];
+		
 	}
 
 }

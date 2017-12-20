@@ -31,7 +31,7 @@ public class ReverseWordsImpl implements ReverseWordsService{
 	public String retrieveReverseWords(String inputSentence) {
 		if(!Optional.ofNullable(inputSentence).isPresent()) {
 			throw new ApplicationError(ExceptionErrorMessage.newObject()
-					.developerMessage("Input Validation Failed because of incorrect string type"));
+					.displayDeveloperMessage("Input Validation Failed because of incorrect string type"));
 		}
 		String[] words = inputSentence.split(" ");			         
 		String reverseString = "";	
