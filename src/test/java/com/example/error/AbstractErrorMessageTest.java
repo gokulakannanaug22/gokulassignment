@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -14,35 +14,19 @@ import org.mockito.runners.MockitoJUnitRunner;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ExceptionErrorMessageTest {
-	
+public class AbstractErrorMessageTest {
+
 	/**
-	 * exceptionErrorMessage
+	 * abstractErrorMessage
 	 */
-	public ExceptionErrorMessage exceptionErrorMessage;
-	
-	/**
-	 * cause
-	 */
-	@Mock
-	public Throwable cause;
+	@Spy
+	public AbstractErrorMessage abstractErrorMessage;
 	
 	/**
 	 * setUp
 	 */
 	@Before
 	public void setUp(){
-		exceptionErrorMessage = new ExceptionErrorMessage();
-	}
-	
-	/**
-	 * testCause
-	 * @throws Exception
-	 */
-	@Test
-	public void testCause() throws Exception{
-		exceptionErrorMessage.cause(cause);
-		assertNotNull(cause);
 	}
 	
 	/**
@@ -52,7 +36,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testErrorCodeSuccess() throws Exception{
 		String errorCode = "200";
-		exceptionErrorMessage.errorCode(errorCode);
+		abstractErrorMessage.errorCode(errorCode);
 		assertNotNull(errorCode);
 		assertEquals("Error Code Compare", "200", errorCode);
 	}
@@ -64,7 +48,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testErrorCodeInputError() throws Exception{
 		String errorCode = "400";
-		exceptionErrorMessage.errorCode("400");
+		abstractErrorMessage.errorCode("400");
 		assertNotNull(errorCode);
 		assertEquals("Error Code Compare", "400", errorCode);
 	}
@@ -76,7 +60,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testErrorCodeApplicationError() throws Exception{
 		String errorCode = "500";
-		exceptionErrorMessage.errorCode("500");
+		abstractErrorMessage.errorCode("500");
 		assertNotNull(errorCode);
 		assertEquals("Error Code Compare", "500", errorCode);
 	}
@@ -88,7 +72,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testDisplayDeveloperMessageSuccess() throws Exception{
 		String developerMessage = "Success";
-		exceptionErrorMessage.displayDeveloperMessage(developerMessage);
+		abstractErrorMessage.displayDeveloperMessage(developerMessage);
 		assertNotNull(developerMessage);
 		assertEquals("Developer Message Compare", "Success", developerMessage);
 	}
@@ -100,7 +84,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testDisplayDeveloperMessageInputError() throws Exception{
 		String developerMessage = "InputError";
-		exceptionErrorMessage.displayDeveloperMessage(developerMessage);
+		abstractErrorMessage.displayDeveloperMessage(developerMessage);
 		assertNotNull(developerMessage);
 		assertEquals("Developer Message Compare", "InputError", developerMessage);
 	}
@@ -112,7 +96,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testDisplayDeveloperMessageAppError() throws Exception{
 		String developerMessage = "Application Error";
-		exceptionErrorMessage.displayDeveloperMessage(developerMessage);
+		abstractErrorMessage.displayDeveloperMessage(developerMessage);
 		assertNotNull(developerMessage);
 		assertEquals("Developer Message Compare", "Application Error", developerMessage);
 	}
@@ -124,7 +108,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testDisplayUserMessageSuccess() throws Exception{
 		String userMessage = "Success";
-		exceptionErrorMessage.displayDeveloperMessage(userMessage);
+		abstractErrorMessage.displayDeveloperMessage(userMessage);
 		assertNotNull(userMessage);
 		assertEquals("User Message Compare", "Success", userMessage);
 	}
@@ -135,10 +119,10 @@ public class ExceptionErrorMessageTest {
 	 */
 	@Test
 	public void testDisplayUserMessageInputError() throws Exception{
-		String userMessage = "InputError";
-		exceptionErrorMessage.displayDeveloperMessage(userMessage);
+		String userMessage = "Input Error";
+		abstractErrorMessage.displayDeveloperMessage(userMessage);
 		assertNotNull(userMessage);
-		assertEquals("User Message Compare", "InputError", userMessage);
+		assertEquals("User Message Compare", "Input Error", userMessage);
 	}
 	
 	/**
@@ -148,7 +132,7 @@ public class ExceptionErrorMessageTest {
 	@Test
 	public void testDisplayUserMessageAppError() throws Exception{
 		String userMessage = "Application Error";
-		exceptionErrorMessage.displayDeveloperMessage(userMessage);
+		abstractErrorMessage.displayDeveloperMessage(userMessage);
 		assertNotNull(userMessage);
 		assertEquals("User Message Compare", "Application Error", userMessage);
 	}

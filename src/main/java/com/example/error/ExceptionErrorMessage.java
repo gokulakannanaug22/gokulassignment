@@ -96,27 +96,6 @@ public final class ExceptionErrorMessage extends AbstractErrorMessage {
 		return this;
 	}
 
-
-
-	/**
-	 * Gets the cause.
-	 *
-	 * @return the cause
-	 */
-	public String getCause() {
-		return cause;
-
-	}
-
-	/**
-	 * Gets the stack trace.
-	 *
-	 * @return the stack trace
-	 */
-	public String getStackTrace() {
-		return stackTrace;
-	}
-
 	/**
 	 * (non-Javadoc).
 	 *

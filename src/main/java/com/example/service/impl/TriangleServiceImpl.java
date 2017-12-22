@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.error.ApplicationError;
+import com.example.error.ExceptionErrorMessage;
 import com.example.service.TriangleService;
 import com.example.validator.InputValidator;
 /**
@@ -39,7 +41,13 @@ public class TriangleServiceImpl implements TriangleService{
 		log.info("Triangle Type");
 		String triangleType = null;
 		if (inputValidator.validate(sideA, sideB, sideC)) {
+			try {
 			triangleType = triangleType(sideA, sideB, sideC);
+			}catch (Exception e) {
+				log.error("Exception occurred when retrieving Triangle Type");
+				throw new ApplicationError(ExceptionErrorMessage.newObject()
+						.displayDeveloperMessage("Exception occurred when retrieving Triangle Type").cause(e));
+			}
 		}
 		return triangleType;
 	}

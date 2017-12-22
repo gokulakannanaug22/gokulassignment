@@ -4,6 +4,7 @@
 package com.example.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.example.error.ApplicationError;
 import com.example.error.ExceptionErrorMessage;
 import com.example.error.InputError;
 import com.example.model.RestRequest;
@@ -41,16 +43,21 @@ public class MakeOneArrayServiceImpl implements MakeOneArrayService{
 					.displayDeveloperMessage("Input Validation Failed because of incorrect array input"));
 		}
 		List<Integer> combinedList = new ArrayList<>();
+		List<Integer> oneArrayList = new ArrayList<>();
+		try {
 		for(List<Integer> newList : restRequest.getArray()) {
 			combinedList.addAll(newList);
 		}
-		List<Integer> newList = new ArrayList<>();
 		for (Integer x : combinedList){
-			if (!newList.contains(x))
-				newList.add(x);
+			if (!oneArrayList.contains(x))
+				oneArrayList.add(x);
 		}
-		return newList;
+		Collections.sort(oneArrayList);
+		}catch (Exception e) {
+			log.error("Exception occurred when retrieving One Array");
+			throw new ApplicationError(ExceptionErrorMessage.newObject()
+					.displayDeveloperMessage("Exception occurred when retrieving One Array").cause(e));
+		}
+		return oneArrayList;
 	}
-
-
 }

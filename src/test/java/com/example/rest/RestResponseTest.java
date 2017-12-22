@@ -8,9 +8,11 @@ import org.powermock.reflect.Whitebox;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.example.error.ExceptionErrorMessage;
+import com.example.error.InputError;
 import com.example.rest.RestErrorMessage;
 import com.example.rest.RestResponse;
 import com.example.rest.ServiceExecutor;
+import static org.mockito.Mockito.when;
 
 /**
  * @author gokulakannanv
@@ -49,6 +51,7 @@ public class RestResponseTest {
 	 */
 	@Test
 	public void testbuild() throws Exception{
+		when(service.execute()).thenReturn(null);
 		com.example.rest.RestResponse.build(service);
 	}
 	
@@ -58,8 +61,8 @@ public class RestResponseTest {
 	 */
 	@Test(expected=NullPointerException.class)
 	public void testbuildError() throws Exception{
-		ServiceExecutor service1 = null;
-		com.example.rest.RestResponse.build(service1);
+		ServiceExecutor serviceExec = null;
+		com.example.rest.RestResponse.build(serviceExec);
 	}
 	
 	/**

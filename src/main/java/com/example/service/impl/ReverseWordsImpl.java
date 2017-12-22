@@ -34,7 +34,8 @@ public class ReverseWordsImpl implements ReverseWordsService{
 					.displayDeveloperMessage("Input Validation Failed because of incorrect string type"));
 		}
 		String[] words = inputSentence.split(" ");			         
-		String reverseString = "";	
+		String reverseString = "";
+		try {
 		for (int i = 0; i < words.length; i++) 
 		{
 			String word = words[i];			             
@@ -44,7 +45,13 @@ public class ReverseWordsImpl implements ReverseWordsService{
 				reverseWord = reverseWord + word.charAt(j);
 			}			             
 			reverseString = reverseString + reverseWord + " ";
-		}			         
+		}
+		}
+		catch (Exception e) {
+			log.error("Exception occurred when retrieving Reversal Words");
+			throw new ApplicationError(ExceptionErrorMessage.newObject()
+					.displayDeveloperMessage("Exception occurred when retrieving Reversal Words").cause(e));
+		}
 		log.info(inputSentence);
 		log.info(reverseString);
 

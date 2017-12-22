@@ -3,7 +3,6 @@
  */
 package com.example.service.impl;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
@@ -11,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.error.ApplicationError;
+import com.example.error.ExceptionErrorMessage;
 import com.example.service.FibonacciService;
 import com.example.validator.InputValidator;
 /**
@@ -39,10 +40,16 @@ public class FibonacciServiceImpl implements FibonacciService{
 	 */
 	@Override
 	public long retrieveFibonacciSequence(long number) {
-		log.info("Fibonacci Sequence");
+		log.info("Fibonacci Sequence Implementation");
 		long result = 0;
 			if(inputValidator.validate(number)) {
+				try {
 				result = groupFibonacciList(number);
+				}catch (Exception e) {
+					log.error("Exception occurred when retrieving Fibonacci Sequence");
+					throw new ApplicationError(ExceptionErrorMessage.newObject()
+							.displayDeveloperMessage("Exception occurred when retrieving Fibonacci Sequence").cause(e));
+				}
 			}
 		return result;
 	}
